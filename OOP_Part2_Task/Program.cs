@@ -2,66 +2,124 @@
 
 class Program
 {
-    List<Room> rooms = new List<Room>();
-    List<Guest> guests = new List<Guest>();
+    
+    
+    
     static void Main(string[] args)
     {
-        bool mune = false;
-        Console.WriteLine("GRAND VISTA HOTEL — MANAGEMENT SYSTEM");
-        switch (mune == true)
+        List<Room> rooms = new List<Room>();
+        List<Guest> guests = new List<Guest>();
+        
+
+        while (true)
         {
-            case 1:
-                Console.WriteLine("Add New Room");
-                break;
-            case 2:
-                Console.WriteLine("Register New Guest");
-                break;
-            case 3:
-                Console.WriteLine("Book a Room for a Guest");
-                break;
-            case 4:
-                Console.WriteLine("View All Rooms");
-                break;
-            case 5:
-                Console.WriteLine("View All Guests");
-                break;
-            case 6:
-                Console.WriteLine("Search & Filter Rooms");
-                break;
-            case 7:
-                Console.WriteLine("Guest & Booking Statistics");
-                break;
-            case 8:
-                Console.WriteLine("Update Room Price");
-                break;
-            case 9:
-                Console.WriteLine("Guest Lookup by Name");
-                break;
-            case 10:
-                Console.WriteLine("Room Type Breakdown Report");
-                break;
-            case 11:
-                Console.WriteLine("Check Out a Guest");
-                break;
-            case 12:
-                Console.WriteLine("Remove Unavailable Rooms");
-                break;
-            case 13:
-                Console.WriteLine("Extend Guest Stay");
-                break;
-            case 14:
-                Console.WriteLine("Highest Revenue Booking");
-                break;
-            case 15:
-                Console.WriteLine("Guest Pagination Viewer");
-                break;
-            case 0:
-                Console.WriteLine("Thank you for using our system");
-                break;
-            default:
-                Console.WriteLine("Not a valid option");
-                break;
+            DisplayMainMenu(); 
+            bool mune = false; 
+            Console.WriteLine("GRAND VISTA HOTEL — MANAGEMENT SYSTEM"); 
+            Console.WriteLine("choose an option"); 
+            int c= int.Parse(Console.ReadLine());
+            switch (c)
+            {
+                case 1: 
+                    Console.WriteLine("Add New Room");
+                    Console.WriteLine("Enter Room Number: "); 
+                    int roomNum = int.Parse(Console.ReadLine());
+                    
+                    bool exist = rooms.Any(r => r.RoomNumber == roomNum);
+                    if (exist)
+                    {
+                        Console.WriteLine("Room Number already exists");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Enter Room Type (Single / Double / Suite)"); 
+                        string roomType = Console.ReadLine();
+                    
+                        Console.Write("Enter Price Per Night: ");
+                        int pricePerNight = int.Parse(Console.ReadLine());
+                        Room newRoom = new Room();
+                        
+                        newRoom.RoomNumber = roomNum;
+                        newRoom.RoomType = roomType;
+                        newRoom.pricePerNight = pricePerNight;
+                        rooms.Add(newRoom);
+                        Console.WriteLine("Add new room ");
+                        
+                        
+                    }
+                    
+                    
+                    
+                    break; 
+                case 2: 
+                    Console.WriteLine("Register New Guest");
+                    Console.WriteLine("Enter guest name: ");
+                    string guestName = Console.ReadLine();
+                    string guestId = "G" + guests.Count +1;
+                    
+                    Console.WriteLine("Enter Check In Day: ");
+                    string day = Console.ReadLine();
+                    Console.WriteLine("Enter Number of night: ");
+                    int night = int.Parse(Console.ReadLine());
+                    if (night < 0)
+                    {
+                        Console.WriteLine("Error, number of nights must be positive number");
+                        return;
+                    }
+                    Console.WriteLine("Guest register successfully");
+                    Console.WriteLine("Guest Name: " + guestName);
+                    Console.WriteLine("Guest Id: " + guestId);
+                    Console.WriteLine("Guest Type: " + day);
+                    Console.WriteLine("Night: " + night);
+                    break; 
+                case 3: 
+                    Console.WriteLine("Book a Room for a Guest"); 
+                    break; 
+                case 4: 
+                    Console.WriteLine("View All Rooms"); 
+                    break; 
+                case 5: 
+                    Console.WriteLine("View All Guests"); 
+                    break; 
+                case 6: 
+                    Console.WriteLine("Search & Filter Rooms"); 
+                    break; 
+                case 7: 
+                    Console.WriteLine("Guest & Booking Statistics"); 
+                    break; 
+                case 8: 
+                    Console.WriteLine("Update Room Price"); 
+                    break; 
+                case 9: 
+                    Console.WriteLine("Guest Lookup by Name"); 
+                    break; 
+                case 10: 
+                    Console.WriteLine("Room Type Breakdown Report"); 
+                    break; 
+                case 11: 
+                    Console.WriteLine("Check Out a Guest"); 
+                    break; 
+                case 12: 
+                    Console.WriteLine("Remove Unavailable Rooms"); 
+                    break; 
+                case 13: 
+                    Console.WriteLine("Extend Guest Stay"); 
+                    break; 
+                case 14: 
+                    Console.WriteLine("Highest Revenue Booking"); 
+                    break; 
+                case 15: 
+                    Console.WriteLine("Guest Pagination Viewer"); 
+                    break; 
+                case 0: 
+                    Console.WriteLine("Thank you for using our system"); 
+                    break; 
+                default: 
+                    Console.WriteLine("Not a valid option"); 
+                    break;
         }
+        }
+        
         static void DisplayMainMenu()
         {
             Console.WriteLine("================================================");
@@ -86,6 +144,7 @@ class Program
             Console.WriteLine("================================================");
             Console.Write("Enter your choice: ");
         }
+        
         
     }
 }

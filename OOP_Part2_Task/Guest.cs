@@ -5,17 +5,17 @@ public class Guest
     public string guestId { set; get; }
     public string guestName { set; get; }
     public int roomNumber { set; get; }
-    public DateOnly checkInDate { set; get; }
+    public DateTime checkInDate { set; get; }
     public int totalNights { set; get; }
 
     public void displayGuest(string guest)
     {
-        
+        Console.WriteLine("Guest: " + guestId+ " Name: " + guestName + " Room Number: " + roomNumber+"Nights: "+totalNights);
     }
 
     
-    public void calculateTotalCost(double total)
+    public double calculateTotalCost(double totalPrice)
     {
-        
+        return totalNights * totalPrice;
     }
 }
