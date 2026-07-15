@@ -13,6 +13,7 @@ public class Guest
         
     }
 
+    
     public void calculateTotalCost(double total)
     {
         
