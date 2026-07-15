@@ -8,6 +8,7 @@ public class Room
     public bool isAvailable;
 
     public void displayRoom(bool room)
+    
     {
         
     }
