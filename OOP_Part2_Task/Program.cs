@@ -1,4 +1,6 @@
-﻿namespace OOP_Part2_Task;
+﻿using System.Globalization;
+
+namespace OOP_Part2_Task;
 
 class Program
 {
@@ -73,7 +75,37 @@ class Program
                     Console.WriteLine("Night: " + night);
                     break; 
                 case 3: 
-                    Console.WriteLine("Book a Room for a Guest"); 
+                    Console.WriteLine("Book a Room for a Guest");
+                    Console.WriteLine("Enter guest ID: ");
+                    int guestID = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter Room Number: ");
+                    int roomNumber = int.Parse(Console.ReadLine());
+                    Console.WriteLine("Enter room number: "+roomNumber);
+                    Console.WriteLine(guestID);
+                    Guest foundGuest = guests.FirstOrDefault(guestID => guestID.Equals(guestID));
+                    Room foundRoom = rooms.FirstOrDefault(room => room.RoomNumber == roomNumber);
+                    if (foundGuest == null)
+                    {
+                        Console.WriteLine("Can not found the guest");
+                    }
+                    else if (foundRoom == null)
+                    {
+                        Console.WriteLine("Can not found the room");
+                    }
+                    else if (foundRoom.isAvailable == false)
+                    {
+                        Console.WriteLine("Can not found the room, its already booked ");
+                    }
+                    else
+                    {
+                        foundGuest.roomNumber = foundRoom.roomNumber.ToString(); 
+                        foundRoom.isAvailable = false;
+                        double totalCost = foundGuest.calculateTotalCost(foundRoom.pricePerNight);
+                        Console.WriteLine("The booking has been successfully confirmed.");
+                        Console.WriteLine("The total cost is: " + totalCost);
+                        Console.WriteLine("");
+                    }
+                    
                     break; 
                 case 4: 
                     Console.WriteLine("View All Rooms"); 
