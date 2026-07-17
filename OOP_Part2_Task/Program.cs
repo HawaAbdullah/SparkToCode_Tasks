@@ -108,7 +108,22 @@ class Program
                     
                     break; 
                 case 4: 
-                    Console.WriteLine("View All Rooms"); 
+                    Console.WriteLine("View All Rooms");
+                    if (rooms.Count > 0)
+                    {
+                        Console.WriteLine("No rooms has been added yet ");
+                    }
+                    else
+                    {
+                        Console.WriteLine("Room number available "+rooms.Count);
+                        foreach (var room in rooms)
+                        {
+                            string status = room.isAvailable ? "Available" : "Unavailable";
+                            Console.WriteLine("Room number: " + room.RoomNumber+"Room type: "+room.RoomType+ "Room price: "+room.pricePerNight+" Room status: "+status);
+                        }
+                        
+                    }
+                    
                     break; 
                 case 5: 
                     Console.WriteLine("View All Guests"); 
