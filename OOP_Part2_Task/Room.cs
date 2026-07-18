@@ -4,8 +4,16 @@ public class Room
 {
     public int RoomNumber { get; set; }
     public string RoomType { get; set; }
-    public int pricePerNight { get; set; }
-    public bool isAvailable;
+    public double pricePerNight { get; set; }
+    public bool isAvailable { get; set; }
+
+    public Room(int  roomNumber, string roomType, double pricePerNight)
+    {
+        RoomNumber = roomNumber;
+        RoomType = roomType;
+        this.pricePerNight = pricePerNight;
+        
+    }
     
     
 
