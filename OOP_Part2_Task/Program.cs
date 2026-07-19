@@ -339,7 +339,50 @@ class Program
                     }
                     break; 
                 case 11: 
-                    Console.WriteLine("Check Out a Guest"); 
+                    Console.WriteLine("Check Out a Guest");
+                    Console.WriteLine("Enter guest id: ");
+                    string gid = Console.ReadLine();
+                    Guest FoundGuest= guests.FirstOrDefault(guest => guest.guestId == gid);
+                    if (FoundGuest == null)
+                    {
+                        Console.WriteLine("Error the guest is Not found in the system");
+                    }
+                    else if (FoundGuest.roomNumber >0)
+                    {
+                        Console.WriteLine("This guest has no active booking.");
+                    }
+                    else
+                    {
+                        Room foundRoomm= rooms.FirstOrDefault(room => room.RoomNumber == FoundGuest.roomNumber);
+                        if (foundRoomm == null)
+                        {
+                            Console.WriteLine("Error: room with this guest is not found ");
+                        }
+                        else
+                        {
+                            double finalCost = FoundGuest.calculateTotalCost(foundRoomm.pricePerNight);
+                            Console.WriteLine("Final invoice");
+                            Console.WriteLine("Guest name "+FoundGuest.guestName);
+                            Console.WriteLine("Room number "+FoundGuest.roomNumber);
+                            Console.WriteLine("Checkin date "+ FoundGuest.checkInDate);
+                            Console.WriteLine("Total neight "+FoundGuest.totalNights);
+                            Console.WriteLine("Total cost "+FoundGuest.calculateTotalCost(25));
+                            Console.WriteLine("Do you want to confirm the checkout and issue the invoice? (Y/N) ");
+                            string confirm = Console.ReadLine();
+                            if (confirm == "Y")
+                            {
+                                Console.WriteLine("Successfully check out and the room was freed");
+                                Console.WriteLine("Total number of rooms in the hotel "+ rooms.Count);
+                                Console.WriteLine("Number of guests remaining in the hotel currently "+ guests.Count);
+                                
+                            }
+                            else
+                            {
+                                Console.WriteLine("The operation was cancelled. No data in the system was changed.");
+                            }
+
+                        }
+                    }
                     break; 
                 case 12: 
                     Console.WriteLine("Remove Unavailable Rooms"); 
